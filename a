@@ -1,0 +1,53 @@
+-------- Devices Table --------
+
+ESSID   MAC Address
+
+1. Shark        00:78:9e:fa:fc:b7
+2. HOTBOX-3941  e8:d1:1b:72:39:47
+3. Shark        68:ff:7b:3d:ee:76
+4. DIRECT-59-HP DeskJet 5200 series     ca:d9:d2:e4:1c:59
+5. Amilov-Net WiFi      0c:8d:db:94:8f:17
+6. WiFi-Repeater        00:e0:20:17:fe:13
+-----------------------------------
+
+-------- Clients Table --------
+
+BSSID   Mac Address
+
+1. HOTBOX-3941  c8:d9:d2:e4:9c:59
+2. HOTBOX-3941  7c:49:eb:96:b2:a6
+3. Shark        88:83:5d:4a:74:53
+-----------------------------------
+
+Press [Ctrl+C] to stop.
+^C
+
+1. 00:78:9e:fa:fc:b7    Shark
+2. e8:d1:1b:72:39:47    HOTBOX-3941
+3. 68:ff:7b:3d:ee:76    Shark
+4. ca:d9:d2:e4:1c:59    DIRECT-59-HP DeskJet 5200 series
+5. 0c:8d:db:94:8f:17    Amilov-Net WiFi
+6. 00:e0:20:17:fe:13    WiFi-Repeater
+
+Please choose Device MAC Address (For example: 00:18:25:16:72:b0 OR type the line number, for example: 3):1
+
+You chose:
+1. HOTBOX-3941  e8:d1:1b:72:39:47
+
+
+
+===Devices===
+{'00:78:9e:fa:fc:b7': 'Shark', 
+'e8:d1:1b:72:39:47': 'HOTBOX-3941', 
+'68:ff:7b:3d:ee:76': 'Shark', 
+'ca:d9:d2:e4:1c:59': 'DIRECT-59-HP DeskJet 5200 series', 
+'0c:8d:db:94:8f:17': 'Amilov-Net WiFi', 
+'00:e0:20:17:fe:13': 'WiFi-Repeater'}
+
+
+===Clients===
+{'c8:d9:d2:e4:9c:59': 'HOTBOX-3941', 
+'7c:49:eb:96:b2:a6': 'HOTBOX-3941', 
+'88:83:5d:4a:74:53': 'Shark'}
+
+

